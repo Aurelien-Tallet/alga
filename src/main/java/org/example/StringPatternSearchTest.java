@@ -12,9 +12,15 @@ public class StringPatternSearchTest {
         Blue    ("\u001B[34m"),
         Purple    ("\u001B[35m"),
         Cyan    ("\u001B[36m"),
-        White    ("\u001B[37m");
+        Bold("\u001B[1m"),
+        Reset("\u001B[0m"),
+        Underline("\u001B[4m");
         private String value;
         public String getValue() {
+            return value;
+        }
+        @Override
+        public String toString() {
             return value;
         }
         Color(String value) {
@@ -36,12 +42,12 @@ public class StringPatternSearchTest {
         var result = true;
         try {
             int index = algo.search(text, pattern);
-            System.out.println("text: " + text + " pattern: " + pattern + " index: " + index);
+            System.out.println(Color.Bold + "" + Color.Underline + "text:" + Color.Reset + " " + text + " " + Color.Bold + " " + Color.Underline + "pattern:" + Color.Reset + " " + pattern + " " + Color.Bold + " " + Color.Underline + "index:" + Color.Reset + " " +index);
             if (index != expected) {
                 throw new RuntimeException("Expected: " + expected + " but got: " + index);
             }
         } catch (Exception e) { // catch all exceptions
-            System.out.println(Color.Red.getValue() + e.getMessage() + Color.White.getValue());
+            System.out.println(Color.Red + e.getMessage() + Color.Reset);
             result = false;
         }
         return result;
@@ -61,9 +67,9 @@ public class StringPatternSearchTest {
                if (!test) NbTests--;
             }
             if(NbTests == TestCases.size()) {
-                System.out.println(Color.Green.getValue() + "(✔) All tests passed for: " + algo.getClass().getSimpleName() + Color.White.getValue());
+                System.out.println(Color.Green + "(✔) All tests passed for: " + algo.getClass().getSimpleName() + Color.Reset);
             } else {
-                System.out.println(Color.Red.getValue() + "(✘) " + (TestCases.size() - NbTests) + "/" + TestCases.size() + " tests failed for: " + algo.getClass().getSimpleName() + Color.White.getValue());
+                System.out.println(Color.Red + "(✘) " + (TestCases.size() - NbTests) + "/" + TestCases.size() + " tests failed for: " + algo.getClass().getSimpleName() + Color.Reset);
             }
         }
     }
