@@ -5,7 +5,7 @@ public class BoyerMoore implements StringPatternSearch {
     public int search(String text, String pattern)
     {
         int len = text.length();
-        int motl = pattern.length() - 1;
+        int motl = pattern.length();
         int i = 0;
         while(i < len){
             int j = motl - 1;
