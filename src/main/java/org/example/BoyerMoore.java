@@ -2,20 +2,18 @@ package org.example;
 
 public class BoyerMoore implements StringPatternSearch {
     @Override
-    public int search(String text, String pattern)
+    public int search(String str, String motif)
     {
-        int len = text.length();
-        int motl = pattern.length();
+        int len = str.length();
+        int motl = motif.length();
         int i = 0;
-        while(i < len){
+        while(i + motl < len + 1){
             int j = motl - 1;
-            while(j >= 0 && text.charAt(i + j) == pattern.charAt(j))
-            {
+            while(j >= 0 && str.charAt(i + j) == motif.charAt(j))
                 j--;
-            }
             if(j < 0)
                 return i;
-            i += motl - pattern.lastIndexOf(text.charAt(i + j)) -1;
+            i += motl - motif.lastIndexOf(str.charAt(i + j)) -1;
         }
         return -1;
     }
